@@ -1499,7 +1499,7 @@ else:
     st.write("웹크롤링 기능: ❌ 라이브러리 설치 필요 (pip install requests beautifulsoup4)")
 
 st.title("🧠 Chatbot 우주 by 박철홍 판사")
-st.markdown("### 온프레미스 버전의 샘플 버전으로 클라우드 GPU를 사용하니, 개인정보가 담긴 PDF를 처리하시면 안 됩니다.")
+st.markdown("### 샘플 버전은 클라우드 GPU를 사용하므로 개인정보가 담긴 PDF를 입력하시면 안 됩니다.")
 
 # 사이드바 설정
 st.sidebar.header("⚙️ 설정")
