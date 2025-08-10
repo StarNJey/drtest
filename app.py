@@ -1352,7 +1352,7 @@ class DeepResearchOrchestrator:
   
     def deep_research(self, query: str) -> Dict[str, Any]:
         """Deep Research 메인 프로세스 (웹크롤링 통합)"""
-        st.info("🔍 Deep Research 프로세스 시작... (PDF + 검색된 자료)")
+        # st.info("🔍 Deep Research 프로세스 시작... (PDF + 검색된 자료)")
     
         # 1. 연구 상태 초기화
         complexity = self.planner.analyze_query_complexity(query)
@@ -1499,7 +1499,7 @@ else:
     st.write("웹크롤링 기능: ❌ 라이브러리 설치 필요 (pip install requests beautifulsoup4)")
 
 st.title("🧠 Deep Research Chatbot by 박철홍 판사")
-st.markdown("### 온프레미스 버전의 샘플 버전입니다(온프레미스 버전에 없을 cloud gpu 활용 + web crawling 기능 있음). cloud gpu와 intranet crawling으로 유사한 결과를 온프레미스로 구현 가능합니다.")
+st.markdown("### 온프레미스 버전의 샘플 버전으로 클라우드 GPU를 사용하니, 개인정보가 담긴 PDF를 처리하시면 안 됩니다.")
 
 # 사이드바 설정
 st.sidebar.header("⚙️ 설정")
@@ -1583,7 +1583,7 @@ if "research_bot" in st.session_state:
     
     # 질문 입력
     st.subheader("💬 Deep Research 질문")
-    st.info("💡 PDF 문서 분석과 최신 웹 정보를 함께 활용하여 답변합니다. 웹에서 가져온 정보는 출처(URL)를 명시합니다.")
+    # st.info("💡 PDF 문서 분석과 최신 웹 정보를 함께 활용하여 답변합니다. 웹에서 가져온 정보는 출처(URL)를 명시합니다.")
     
     query = st.text_input(
         "심층 연구할 주제를 입력하세요:",
