@@ -1593,7 +1593,7 @@ if "research_bot" in st.session_state:
     
     col1, col2 = st.columns([1, 4])
     with col1:
-        research_button = st.button("🧠 Research 시작", type="primary")
+        research_button = st.button("🧠 Deep Research 시작", type="primary")
     with col2:
         if st.button("🗑️ 연구 기록 초기화"):
             if "research_history" in st.session_state:
