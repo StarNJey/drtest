@@ -1498,7 +1498,7 @@ if WEB_CRAWLING_AVAILABLE:
 else:
     st.write("웹크롤링 기능: ❌ 라이브러리 설치 필요 (pip install requests beautifulsoup4)")
 
-st.title("🧠 Deep Research Chatbot by 박철홍 판사")
+st.title("🧠 Chatbot 우주 by 박철홍 판사")
 st.markdown("### 온프레미스 버전의 샘플 버전으로 클라우드 GPU를 사용하니, 개인정보가 담긴 PDF를 처리하시면 안 됩니다.")
 
 # 사이드바 설정
@@ -1710,11 +1710,6 @@ with st.expander("🎓 Deep Research 사용 가이드"):
     - 🔬 **Analyzer Agent**: PDF + 웹 정보 교차 검증
     - 📝 **Synthesizer Agent**: 출처별 인용을 포함한 종합 답변 생성
     - ✅ **Validator Agent**: 최종 품질 검증
-    
-    **하이브리드 정보 소스**:
-    - PDF 문서: 상세하고 정확한 기존 정보
-    - 웹 크롤링: 최신 동향 및 일반 지식
-    - 출처 구분: PDF와 웹 소스를 명확히 구분하여 표시
     
     **출처 표시 형식**:
     - PDF: [파일명, 관련도: 0.XX]
