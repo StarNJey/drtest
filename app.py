@@ -628,6 +628,11 @@ class RetrieverAgent:
         self.device_config = device_config
         self.web_crawler = web_crawler
         
+        self.crawled_urls = set()
+        self.failed_urls = set()
+        self.crawled_queries = set()
+        self.failed_queries = set()
+        
     def multi_query_retrieval(self, search_queries: List[SearchQuery], 
                             documents: List[Dict], embeddings: np.ndarray, 
                             orchestrator=None) -> List[Dict]:
@@ -657,14 +662,32 @@ class RetrieverAgent:
             if web_queries:
                 st.info(f"🌐 웹 검색 수행 중... ({len(web_queries)}개 쿼리)")
                 
-                for web_query in web_queries:
-                    try:
-                        crawled_docs = self.web_crawler.search_and_crawl(
-                            web_query.text, max_results=10
-                        )
-                        web_docs_collected.extend(crawled_docs)
-                    except Exception as e:
-                        st.warning(f"웹 크롤링 실패: {e}")
+            for web_query in web_queries:
+            # 쿼리 단위 재시도 방지
+                if web_query.text in self.crawled_queries or web_query.text in self.failed_queries:
+                    continue
+                try:
+                    crawled_docs = self.web_crawler.search_and_crawl(web_query.text, max_results=10)
+                    if crawled_docs:
+                    # 크롤링 성공
+                        self.crawled_queries.add(web_query.text)
+                    # URL 단위 기록
+                        for doc in crawled_docs:
+                            self.crawled_urls.add(doc.url)
+                    else:
+                    # 크롤링 결과 없음
+                        self.failed_queries.add(web_query.text)
+                except Exception as e:
+                # 크롤링 실패
+                    self.failed_queries.add(web_query.text)
+                    st.warning(f"웹 크롤링 실패: {e}")
+                #for web_query in web_queries:
+                    #try:
+                        #crawled_docs = self.web_crawler.search_and_crawl(
+                            #web_query.text, max_results=10)
+                        #web_docs_collected.extend(crawled_docs)
+                    #except Exception as e:
+                        #st.warning(f"웹 크롤링 실패: {e}")
                 
                 # 웹 문서를 검색 결과에 추가
                 if web_docs_collected and orchestrator:
